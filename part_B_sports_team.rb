@@ -1,13 +1,15 @@
 class SportsTeam
 
-  attr_accessor :team_name, :players, :coach_name
+  attr_reader :team_name, :players
+  attr_accessor :coach_name 
 
   def initialize(team_name, players, coach_name)
     @team_name = team_name
     @players = players
     @coach_name = coach_name
-    @win_counter = 1
-    @loss_counter = 1
+    @win_counter = 0.0
+    @loss_counter = 0.0
+    
 
   end
 
@@ -20,28 +22,35 @@ class SportsTeam
     return false
   end
 
-  def add_to_wins(win)
-    if win == "win"
-      @win_counter = @win_counter += 1
-      return @win_counter
+  def add_to_wins(result)
+    if result == "win"
+      @win_counter += 1
     end
   end
 
+  def add_to_loss(result)
+    if result == "loss"
+      @loss_counter += 1
+    end
+  end
 
-  # def add_to_loss(loss)
-  #   if loss == "loss"
-  #    @loss_counter = @loss_counter +=1
-  #    return @loss_counter
-  #   end
-  # end
+  def play_game(result)
+    add_to_loss(result)
+    add_to_wins(result)
+  end
 
   # def win_loss_rate(rate)
-  #   rate = (@win_counter.to_f) / (@wincounter.to_f + @loss_counter.to_f)
-  #   return rate
+  #   return @win_loss_rate
   # end
 
 
-  ######### was trying to include a win-loss floating point number but need to change a lot in the class section #########
+  def win_loss_rate()
+    rate = (@win_counter) / (@win_counter + @loss_counter)
+    return rate
+  end
+
+
+  ######### was trying to include a win-loss rate floating point number but need to change a lot in the class section #########
 
 
 

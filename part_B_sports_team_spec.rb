@@ -15,6 +15,10 @@ class TestSportsTeam < MiniTest::Test
     assert_equal(["Barry", "Calum", "Jamie", "Ally", "Craig"], @sports_team.players)
   end
 
+  # def test_get_players
+  #   assert_equal(5, @sports_team.players.count)
+  # end
+
   def test_get_coach_name
     assert_equal("McAfro", @sports_team.coach_name)
   end
@@ -39,19 +43,26 @@ class TestSportsTeam < MiniTest::Test
   end
 
   def test_add_to_wins
-    assert_equal(2, @sports_team.add_to_wins("win"))
+    assert_equal(1, @sports_team.add_to_wins("win"))
   end
 
-  # def test_add_to_loss
-  #   assert_equal(2, @sports_team.add_to_loss("loss"))
-  # end
+  def test_add_to_loss
+    assert_equal(1, @sports_team.add_to_loss("loss"))
+  end
 
-  # def test_win_loss_rate
-  #   @sports_team.win_loss_rate(0.5)
-  #   assert_equal(0.5, @sports_team.win_loss_rate(0.5))
-  # end
+  def test_play_game
+    assert_equal(1, @sports_team.play_game("win"))
+  end
 
-  ######### was trying to include a win-loss floating point number but need to change a lot in the class section #########
 
+  def test_win_loss_rate
+    @sports_team.add_to_wins("win")
+    @sports_team.add_to_loss("loss")
+    @sports_team.add_to_loss("loss")
+    @sports_team.add_to_loss("loss")
+    assert_equal(0.25, @sports_team.win_loss_rate)
+  end
+
+  ######### was trying to include a win-loss rate floating point number but need to change a lot in the class section #########
 
 end
